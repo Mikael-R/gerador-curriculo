@@ -1,0 +1,8 @@
+div:where(.swal2-container) div:where(.swal2-popup) {
+  color: #ffffff !important;
+  background: #3B3B40 !important;
+}
+
+#swal2-title {
+  font-size: 1.6rem;
+}
