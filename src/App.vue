@@ -1,5 +1,5 @@
 <template>
-  <main class="min-h-screen min-w-screen relative bg-black/80">
+  <main class="min-h-screen min-w-screen relative p-4">
     <RouterView />
   </main>
 </template>
