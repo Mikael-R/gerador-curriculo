@@ -13,7 +13,7 @@ import {
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
-import { X } from 'lucide-vue-next'
+import { Trash } from 'lucide-vue-next'
 
 const { handleSubmit } = useForm({
   validationSchema,
@@ -36,7 +36,7 @@ const onSubmit = handleSubmit((values) => {
 </script>
 
 <template>
-  <form @submit="onSubmit" class="flex flex-col gap-2">
+  <form @submit="onSubmit" class="flex flex-col gap-3">
     <FormField v-slot="{ componentField }" name="name">
       <FormItem>
         <FormLabel>Nome completo</FormLabel>
@@ -87,14 +87,17 @@ const onSubmit = handleSubmit((values) => {
       </FormItem>
     </FormField>
 
-    <div class="flex flex-col">
-      <div class="flex flex-col gap-2" v-for="(exp, index) in experienceFields" :key="index">
-        <h3 class="font-semibold mt-4">
-          <Button v-if="index > 0" variant="destructive" size="icon" @click="removeExperience(index)" class="mr-2" type="button">
-            <X class="w-3 h-3" />
+    <div class="flex flex-col gap-4">
+      <div class="flex flex-col gap-3" v-for="(_, index) of experienceFields" :key="index">
+        <div class="relative flex flex-row items-center justify-center mt-2">
+          <h3 class="text-xl text-center font-semibold">
+            Experiência Profissional {{ index + 1 }}
+          </h3>
+
+          <Button v-if="index > 0" variant="destructive" size="icon" @click="removeExperience(index)" class="rounded-full absolute right-0 -top-1" type="button">
+            <Trash class="w-3 h-3" />
           </Button>
-          Experiência Profissional {{ index + 1 }}
-        </h3>
+        </div>
 
         <FormField :name="`experience.${index}.companyName`" v-slot="{ componentField }">
           <FormItem>
@@ -147,12 +150,12 @@ const onSubmit = handleSubmit((values) => {
         </FormField>
       </div>
 
-      <Button type="button" @click="addExperience({})" class="mt-2 ml-auto">
+      <Button type="button" @click="addExperience({})" class="ml-auto">
         Adicionar experiência
       </Button>
     </div>
 
-    <Button type="submit" class="mt-4" :loading="loading">
+    <Button type="submit" class="mt-3 h-12 text-base" :loading="loading">
       Enviar
     </Button>
   </form>
