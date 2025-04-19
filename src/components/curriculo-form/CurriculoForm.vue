@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import { useForm, useFieldArray } from 'vee-validate'
 import { validationSchema } from './validation'
 
@@ -26,6 +27,8 @@ const {
   remove: removeExperience,
   push: addExperience
 } = useFieldArray('experience')
+
+const loading = ref(false)
 
 const onSubmit = handleSubmit((values) => {
   console.log(values)
@@ -149,7 +152,7 @@ const onSubmit = handleSubmit((values) => {
       </Button>
     </div>
 
-    <Button type="submit" class="mt-4">
+    <Button type="submit" class="mt-4" :loading="loading">
       Enviar
     </Button>
   </form>
