@@ -1,11 +1,10 @@
 <script setup lang="ts">
-import { ref } from 'vue'
 import { useForm, useFieldArray } from 'vee-validate'
+import { validationSchema } from './validation'
 
 import { Button } from '@/components/ui/button'
 import {
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -14,12 +13,11 @@ import {
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { X } from 'lucide-vue-next'
-import { validationSchema } from './validation'
 
-const { handleSubmit, control } = useForm({
+const { handleSubmit } = useForm({
   validationSchema,
   initialValues: {
-    experience: [{}],
+    experience: [{} as any],
   },
 })
 

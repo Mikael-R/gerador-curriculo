@@ -1,5 +1,5 @@
 import { toTypedSchema } from '@vee-validate/zod'
-import * as z from 'zod'
+import { z } from '@/lib/zod'
 
 export const validationSchema = toTypedSchema(
   z.object({
