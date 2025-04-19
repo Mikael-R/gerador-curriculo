@@ -86,7 +86,7 @@ const onSubmit = form.handleSubmit((values) => {
     <div class="flex flex-col">
       <div class="flex flex-col gap-2" v-for="(exp, index) in experienceFields" :key="index">
         <h3 class="font-semibold mt-4">
-          <Button v-if="index > 0" variant="destructive" size="icon" @click="experienceFields.splice(index, 1)" class="mr-2">
+          <Button v-if="index > 0" variant="destructive" size="icon" @click="experienceFields.splice(index, 1)" class="mr-2" type="button">
             <X class="w-3 h-3" />
           </Button>
           Experiência Profissional {{ index + 1 }}
