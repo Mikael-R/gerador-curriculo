@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1 class="text-center text-3xl font-semibold mt-3 mb-6"> Gerador de currículo </h1>
-    <div class="flex flex-row justify-evenly gap-10">
+    <div class="flex flex-row justify-evenly gap-8 px-3">
       <CurriculoForm class="w-full max-w-md"/>
       <CurriculoTemplate class="w-full max-w-xl" :curriculo="curriculo" />
     </div>
