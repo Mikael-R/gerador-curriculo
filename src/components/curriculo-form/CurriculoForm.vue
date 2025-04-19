@@ -15,7 +15,7 @@ import {
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
-import { Trash } from 'lucide-vue-next'
+import { Icon } from '@iconify/vue'
 
 const { toast } = useToast()
 
@@ -116,7 +116,7 @@ const onSubmit = handleSubmit((values) => {
           </h3>
 
           <Button v-if="index > 0" variant="destructive" size="icon" @click="removeExperience(index)" class="rounded-full absolute right-0 -top-1" type="button">
-            <Trash class="w-3 h-3" />
+            <Icon icon="radix-icons:trash" class="w-3 h-3" />
           </Button>
         </div>
 
