@@ -1,10 +1,10 @@
-import { z } from "zod";
-import i18next from "i18next";
-import { zodI18nMap } from "zod-i18n-map";
+import { z } from 'zod';
+import i18next from 'i18next';
+import { zodI18nMap } from 'zod-i18n-map';
 import translation from '@/assets/zod-i18n/pt.json'
 
 i18next.init({
-  lng: "pt",
+  lng: 'pt',
   resources: {
     pt: { zod: translation },
   },

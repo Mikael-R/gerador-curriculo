@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useForm, useFieldArray } from 'vee-validate'
-import { validationSchema } from '.'
+import { useToast } from '@/components/ui/toast/use-toast'
+import { validationSchema, DEFAULT_FORM } from '.'
 
 import { Button } from '@/components/ui/button'
 import {
@@ -15,11 +16,11 @@ import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Trash } from 'lucide-vue-next'
 
-const { handleSubmit } = useForm({
+const { toast } = useToast()
+
+const { handleSubmit, resetForm } = useForm({
   validationSchema,
-  initialValues: {
-    experience: [{} as any],
-  },
+  initialValues: DEFAULT_FORM,
 })
 
 const {
@@ -31,7 +32,26 @@ const {
 const loading = ref(false)
 
 const onSubmit = handleSubmit((values) => {
-  console.log(values)
+  try {
+    loading.value = true
+
+    console.log(values)
+
+    resetForm({ values: DEFAULT_FORM })
+
+    toast({
+      title: 'Currículo gerado com sucesso!',
+      description: 'Seu currículo foi gerado e baixado em PDF.',
+    })
+  } catch (error) {
+    toast({
+      title: 'Erro ao gerar currículo',
+      description: 'Ocorreu um erro ao gerar seu currículo. Tente novamente mais tarde.',
+      variant: 'destructive',
+    })
+  } finally {
+    loading.value = false
+  }
 })
 </script>
 
