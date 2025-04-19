@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useForm, useFieldArray } from 'vee-validate'
+import { toTypedSchema } from '@vee-validate/zod'
 import { useToast } from '@/components/ui/toast/use-toast'
-import { validationSchema, DEFAULT_FORM } from '.'
+import { curriculoSchema, DEFAULT_CURRICULO } from '.'
 
 import { Button } from '@/components/ui/button'
 import {
@@ -19,8 +20,8 @@ import { Trash } from 'lucide-vue-next'
 const { toast } = useToast()
 
 const { handleSubmit, resetForm } = useForm({
-  validationSchema,
-  initialValues: DEFAULT_FORM,
+  validationSchema: toTypedSchema(curriculoSchema),
+  initialValues: DEFAULT_CURRICULO,
 })
 
 const {
@@ -37,7 +38,7 @@ const onSubmit = handleSubmit((values) => {
 
     console.log(values)
 
-    resetForm({ values: DEFAULT_FORM })
+    resetForm({ values: DEFAULT_CURRICULO })
 
     toast({
       title: 'Currículo gerado com sucesso!',

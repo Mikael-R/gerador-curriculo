@@ -1,7 +1,6 @@
-import { toTypedSchema } from '@vee-validate/zod'
 import { z } from '@/lib/zod'
 
-const experienceSchema = z.object({
+export const experienceSchema = z.object({
   companyName: z.string().min(2, 'Nome da empresa muito curto'),
   startDate: z.string().regex(/^\d{4}-\d{2}$/, 'Formato de data inválido (use AAAA-MM)'),
   endDate: z.string().regex(/^\d{4}-\d{2}$/, 'Formato de data inválido (use AAAA-MM)'),
@@ -9,7 +8,7 @@ const experienceSchema = z.object({
   description: z.string().min(5, 'Descrição muito curta').max(1000, 'Descrição muito longa'),
 })
 
-const formSchema = z.object({
+export const curriculoSchema = z.object({
   name: z.string().min(2, 'Nome muito curto').max(50, 'Nome muito longo'),
   email: z.string().email('Email inválido'),
   phone: z.string().min(8, 'Telefone muito curto').max(20, 'Telefone muito longo'),
@@ -18,10 +17,11 @@ const formSchema = z.object({
   experience: z.array(experienceSchema).min(1, 'Adicione ao menos uma experiência profissional')
 })
 
-export const validationSchema = toTypedSchema(formSchema)
+export type TCurriculo = z.infer<typeof curriculoSchema>
+export type TExperience = z.infer<typeof experienceSchema>
 
-export const DEFAULT_FORM: Partial<z.infer<typeof formSchema>> = {
-  experience: [{} as z.infer<typeof experienceSchema>],
+export const DEFAULT_CURRICULO: Partial<TCurriculo> = {
+  experience: [{} as TExperience],
 }
 
 export { default as CurriculoForm } from './CurriculoForm.vue'
