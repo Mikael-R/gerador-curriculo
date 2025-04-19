@@ -23,7 +23,11 @@ const form = useForm({
 const experienceFields = ref([{}])
 
 const addExperience = () => {
-  experienceFields.value.push({})
+  experienceFields.value.push({ id: Math.random() })
+}
+
+const removeExperience = (id: number) => {
+  experienceFields.value = experienceFields.value.filter((exp) => exp.id !== id)
 }
 
 const onSubmit = form.handleSubmit((values) => {
@@ -84,15 +88,15 @@ const onSubmit = form.handleSubmit((values) => {
     </FormField>
 
     <div class="flex flex-col">
-      <div class="flex flex-col gap-2" v-for="(exp, index) in experienceFields" :key="index">
+      <div class="flex flex-col gap-2" v-for="(exp, index) in experienceFields" :key="exp.id">
         <h3 class="font-semibold mt-4">
-          <Button v-if="index > 0" variant="destructive" size="icon" @click="experienceFields.splice(index, 1)" class="mr-2" type="button">
+          <Button v-if="index > 0" variant="destructive" size="icon" @click="removeExperience(exp.id)" class="mr-2" type="button">
             <X class="w-3 h-3" />
           </Button>
           Experiência Profissional {{ index + 1 }}
         </h3>
 
-        <FormField :name="`experience.${index}.companyName`" v-slot="{ componentField }">
+        <FormField :name="`experience.${exp.id}.companyName`" v-slot="{ componentField }">
           <FormItem>
             <FormLabel>Nome da empresa</FormLabel>
             <FormControl>
@@ -102,7 +106,7 @@ const onSubmit = form.handleSubmit((values) => {
           </FormItem>
         </FormField>
 
-        <FormField :name="`experience.${index}.position`" v-slot="{ componentField }">
+        <FormField :name="`experience.${exp.id}.position`" v-slot="{ componentField }">
           <FormItem>
             <FormLabel>Cargo</FormLabel>
             <FormControl>
@@ -112,7 +116,7 @@ const onSubmit = form.handleSubmit((values) => {
           </FormItem>
         </FormField>
 
-        <FormField :name="`experience.${index}.startDate`" v-slot="{ componentField }">
+        <FormField :name="`experience.${exp.id}.startDate`" v-slot="{ componentField }">
           <FormItem>
             <FormLabel>Início</FormLabel>
             <FormControl>
@@ -122,7 +126,7 @@ const onSubmit = form.handleSubmit((values) => {
           </FormItem>
         </FormField>
 
-        <FormField :name="`experience.${index}.endDate`" v-slot="{ componentField }">
+        <FormField :name="`experience.${exp.id}.endDate`" v-slot="{ componentField }">
           <FormItem>
             <FormLabel>Término</FormLabel>
             <FormControl>
@@ -132,7 +136,7 @@ const onSubmit = form.handleSubmit((values) => {
           </FormItem>
         </FormField>
 
-        <FormField :name="`experience.${index}.description`" v-slot="{ componentField }">
+        <FormField :name="`experience.${exp.id}.description`" v-slot="{ componentField }">
           <FormItem>
             <FormLabel>Descrição</FormLabel>
             <FormControl>
