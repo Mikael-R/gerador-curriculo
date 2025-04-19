@@ -6,5 +6,5 @@
 </template>
 
 <script setup lang="ts">
-import CurriculoForm from '@/components/curriculo-form/CurriculoForm.vue'
+import { CurriculoForm } from '@/components/curriculo-form'
 </script>

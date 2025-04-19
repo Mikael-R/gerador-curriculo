@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useForm, useFieldArray } from 'vee-validate'
-import { validationSchema } from './validation'
+import { validationSchema } from '.'
 
 import { Button } from '@/components/ui/button'
 import {

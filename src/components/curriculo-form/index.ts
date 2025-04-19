@@ -20,3 +20,5 @@ export const validationSchema = toTypedSchema(
     ).min(1, "Adicione ao menos uma experiência profissional")
   })
 )
+
+export { default as CurriculoForm } from './CurriculoForm.vue'
