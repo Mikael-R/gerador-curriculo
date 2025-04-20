@@ -38,11 +38,11 @@ defineProps<{
 
 <style scoped lang="postcss">
 h1 {
-  @apply text-2xl text-center font-semibold;
+  @apply text-2xl text-center font-semibold mb-2;
 }
 
 h2 {
-  @apply text-xl font-semibold;
+  @apply text-xl font-semibold mb-2;
 }
 
 hr {
