@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-slate-100 dark:bg-zinc-900 rounded-md px-4 py-6 shadow-md">
+  <div class="bg-slate-100 dark:bg-zinc-900 px-4 py-6 shadow-md">
     <h1>{{ curriculo.name }}</h1>
     <p>{{ curriculo.email }}</p>
     <p>{{ curriculo.phone }}</p>

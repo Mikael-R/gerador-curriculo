@@ -1,7 +1,6 @@
 <template>
   <header class="absolute top-4 right-4 flex flex-row gap-2">
     <ButtonDownload @click="downloadPDF" />
-    <TogglePreview />
     <ToggleTheme />
   </header>
 
@@ -16,9 +15,9 @@
         @submit="downloadPDF"
       />
       <CurriculoTemplate
-        v-if="activePreview && curriculoForm"
+        v-if="curriculoForm"
         ref="curriculoTemplate"
-        class="w-full max-w-xl"
+        class="w-full h-full"
         :curriculo="curriculoForm.curriculo"
       />
     </div>
@@ -30,7 +29,6 @@ import { ref } from 'vue'
 import html2pdf from 'html2pdf.js'
 import { useToast } from '@/components/ui/toast/use-toast'
 import { ButtonDownload } from '@/components/button-download'
-import { TogglePreview, activePreview } from '@/components/toggle-preview'
 import { ToggleTheme } from '@/components/toggle-theme'
 import { CurriculoForm } from '@/components/curriculo-form'
 import { CurriculoTemplate } from '@/components/curriculo-template'

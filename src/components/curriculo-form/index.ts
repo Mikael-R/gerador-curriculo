@@ -39,7 +39,7 @@ export type TCurriculo = z.infer<typeof curriculoSchema>
 export type TExperience = z.infer<typeof experienceSchema>
 
 export const DEFAULT_CURRICULO: Partial<TCurriculo> = {
-  name: '',
+  name: 'Teste',
   email: 'teste@gmail.com',
   phone: '123456789',
   address: 'Rua Teste, 123',
