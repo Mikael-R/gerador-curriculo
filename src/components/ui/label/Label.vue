@@ -6,8 +6,8 @@ import { computed, type HTMLAttributes } from 'vue'
 const props = defineProps<LabelProps & { class?: HTMLAttributes['class'] }>()
 
 const delegatedProps = computed(() => {
-  const { class: _, ...delegated } = props
-
+  const delegated = { ...props }
+  delete delegated.class
   return delegated
 })
 </script>
@@ -18,7 +18,7 @@ const delegatedProps = computed(() => {
     :class="
       cn(
         'text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70',
-        props.class,
+        props.class
       )
     "
   >

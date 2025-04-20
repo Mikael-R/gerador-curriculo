@@ -5,9 +5,9 @@
 </template>
 
 <script setup lang="ts">
-import type { TCurriculo } from '@/components/curriculo-form';
+import type { TCurriculo } from '@/components/curriculo-form'
 
 defineProps<{
   curriculo: TCurriculo
-}>();
+}>()
 </script>

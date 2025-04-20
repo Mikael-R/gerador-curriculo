@@ -11,7 +11,7 @@ import {
   FormField,
   FormItem,
   FormLabel,
-  FormMessage,
+  FormMessage
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
@@ -21,7 +21,7 @@ const { toast } = useToast()
 
 const { handleSubmit, resetForm } = useForm({
   validationSchema: toTypedSchema(curriculoSchema),
-  initialValues: DEFAULT_CURRICULO,
+  initialValues: DEFAULT_CURRICULO
 })
 
 const {
@@ -42,13 +42,15 @@ const onSubmit = handleSubmit((values) => {
 
     toast({
       title: 'Currículo gerado com sucesso!',
-      description: 'Seu currículo foi gerado e baixado em PDF.',
+      description: 'Seu currículo foi gerado e baixado em PDF.'
     })
-  } catch (error) {
+  } catch (e) {
+    console.error(e)
     toast({
       title: 'Erro ao gerar currículo',
-      description: 'Ocorreu um erro ao gerar seu currículo. Tente novamente mais tarde.',
-      variant: 'destructive',
+      description:
+        'Ocorreu um erro ao gerar seu currículo. Tente novamente mais tarde.',
+      variant: 'destructive'
     })
   } finally {
     loading.value = false
@@ -57,12 +59,16 @@ const onSubmit = handleSubmit((values) => {
 </script>
 
 <template>
-  <form @submit="onSubmit" class="flex flex-col gap-3">
+  <form class="flex flex-col gap-3" @submit="onSubmit">
     <FormField v-slot="{ componentField }" name="name">
       <FormItem>
         <FormLabel>Nome completo</FormLabel>
         <FormControl>
-          <Input type="text" placeholder="João da Silva" v-bind="componentField" />
+          <Input
+            type="text"
+            placeholder="João da Silva"
+            v-bind="componentField"
+          />
         </FormControl>
         <FormMessage />
       </FormItem>
@@ -72,7 +78,11 @@ const onSubmit = handleSubmit((values) => {
       <FormItem>
         <FormLabel>Email</FormLabel>
         <FormControl>
-          <Input type="email" placeholder="seu@email.com" v-bind="componentField" />
+          <Input
+            type="email"
+            placeholder="seu@email.com"
+            v-bind="componentField"
+          />
         </FormControl>
         <FormMessage />
       </FormItem>
@@ -82,7 +92,11 @@ const onSubmit = handleSubmit((values) => {
       <FormItem>
         <FormLabel>Telefone</FormLabel>
         <FormControl>
-          <Input type="tel" placeholder="(11) 99999-9999" v-bind="componentField" />
+          <Input
+            type="tel"
+            placeholder="(11) 99999-9999"
+            v-bind="componentField"
+          />
         </FormControl>
         <FormMessage />
       </FormItem>
@@ -92,7 +106,11 @@ const onSubmit = handleSubmit((values) => {
       <FormItem>
         <FormLabel>Endereço</FormLabel>
         <FormControl>
-          <Input type="text" placeholder="Rua Exemplo, 123" v-bind="componentField" />
+          <Input
+            type="text"
+            placeholder="Rua Exemplo, 123"
+            v-bind="componentField"
+          />
         </FormControl>
         <FormMessage />
       </FormItem>
@@ -102,47 +120,76 @@ const onSubmit = handleSubmit((values) => {
       <FormItem>
         <FormLabel>Resumo profissional</FormLabel>
         <FormControl>
-          <Textarea placeholder="Escreva um breve resumo sobre sua carreira" v-bind="componentField" />
+          <Textarea
+            placeholder="Escreva um breve resumo sobre sua carreira"
+            v-bind="componentField"
+          />
         </FormControl>
         <FormMessage />
       </FormItem>
     </FormField>
 
     <div class="flex flex-col gap-4">
-      <div class="flex flex-col gap-3" v-for="(_, index) of experienceFields" :key="index">
+      <div
+        v-for="(_, index) of experienceFields"
+        :key="index"
+        class="flex flex-col gap-3"
+      >
         <div class="relative flex flex-row items-center justify-center mt-2">
           <h3 class="text-xl text-center font-semibold">
             Experiência Profissional {{ index + 1 }}
           </h3>
 
           <Tippy content="Apagar experiência" class="absolute right-0 -top-1">
-            <Button v-if="index > 0" variant="destructive" size="icon" @click="removeExperience(index)" class="rounded-full" type="button">
+            <Button
+              v-if="index > 0"
+              variant="destructive"
+              size="icon"
+              class="rounded-full"
+              type="button"
+              @click="removeExperience(index)"
+            >
               <Icon icon="radix-icons:trash" />
             </Button>
           </Tippy>
         </div>
 
-        <FormField :name="`experience.${index}.companyName`" v-slot="{ componentField }">
+        <FormField
+          v-slot="{ componentField }"
+          :name="`experience.${index}.companyName`"
+        >
           <FormItem>
             <FormLabel>Nome da empresa</FormLabel>
             <FormControl>
-              <Input placeholder="Empresa Exemplo LTDA" v-bind="componentField" />
+              <Input
+                placeholder="Empresa Exemplo LTDA"
+                v-bind="componentField"
+              />
             </FormControl>
             <FormMessage />
           </FormItem>
         </FormField>
 
-        <FormField :name="`experience.${index}.position`" v-slot="{ componentField }">
+        <FormField
+          v-slot="{ componentField }"
+          :name="`experience.${index}.position`"
+        >
           <FormItem>
             <FormLabel>Cargo</FormLabel>
             <FormControl>
-              <Input placeholder="Desenvolvedor Frontend" v-bind="componentField" />
+              <Input
+                placeholder="Desenvolvedor Frontend"
+                v-bind="componentField"
+              />
             </FormControl>
             <FormMessage />
           </FormItem>
         </FormField>
 
-        <FormField :name="`experience.${index}.startDate`" v-slot="{ componentField }">
+        <FormField
+          v-slot="{ componentField }"
+          :name="`experience.${index}.startDate`"
+        >
           <FormItem>
             <FormLabel>Início</FormLabel>
             <FormControl>
@@ -152,7 +199,10 @@ const onSubmit = handleSubmit((values) => {
           </FormItem>
         </FormField>
 
-        <FormField :name="`experience.${index}.endDate`" v-slot="{ componentField }">
+        <FormField
+          v-slot="{ componentField }"
+          :name="`experience.${index}.endDate`"
+        >
           <FormItem>
             <FormLabel>Término</FormLabel>
             <FormControl>
@@ -162,18 +212,24 @@ const onSubmit = handleSubmit((values) => {
           </FormItem>
         </FormField>
 
-        <FormField :name="`experience.${index}.description`" v-slot="{ componentField }">
+        <FormField
+          v-slot="{ componentField }"
+          :name="`experience.${index}.description`"
+        >
           <FormItem>
             <FormLabel>Descrição</FormLabel>
             <FormControl>
-              <Textarea placeholder="Descreva suas atividades e conquistas" v-bind="componentField" />
+              <Textarea
+                placeholder="Descreva suas atividades e conquistas"
+                v-bind="componentField"
+              />
             </FormControl>
             <FormMessage />
           </FormItem>
         </FormField>
       </div>
 
-      <Button type="button" @click="addExperience({})" class="ml-auto">
+      <Button type="button" class="ml-auto" @click="addExperience({})">
         Adicionar experiência
       </Button>
     </div>
