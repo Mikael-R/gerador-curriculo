@@ -1,14 +1,16 @@
 <template>
-  <header class="absolute top-4 right-4 flex flex-row gap-2">
+  <header
+    class="md:absolute top-0 right-0 flex flex-row w-full justify-end p-4 gap-2"
+  >
     <ButtonDownload @click="downloadPDF" />
     <ToggleTheme />
   </header>
 
-  <main class="p-4">
-    <h1 class="text-center text-3xl font-semibold mt-3 mb-6">
+  <main>
+    <h1 class="text-center text-3xl font-semibold my-5">
       Gerador de currículo
     </h1>
-    <div class="flex flex-row justify-center gap-8 p-3">
+    <div class="flex flex-col lg:flex-row justify-center gap-8 p-3 lg:pl-8">
       <CurriculoForm
         ref="curriculoForm"
         class="w-full max-w-md"
@@ -38,20 +40,6 @@ const { toast } = useToast()
 const curriculoForm = ref()
 const curriculoTemplate = ref()
 
-const options = {
-  margin: 0,
-  image: {
-    type: 'jpeg',
-    quality: 1
-  },
-  html2canvas: { scale: 3 },
-  jsPDF: {
-    unit: 'mm',
-    format: 'a4',
-    orientation: 'p'
-  }
-}
-
 const downloadPDF = async () => {
   if (curriculoForm.value?.validate) {
     const { valid } = await curriculoForm.value.validate()
@@ -67,7 +55,7 @@ const downloadPDF = async () => {
 
   const el = curriculoTemplate.value.$el
 
-  html2pdf().from(el).set(options).save('curriculo.pdf')
+  html2pdf().from(el).save('curriculo.pdf')
 
   toast({
     title: 'Currículo gerado com sucesso!',
