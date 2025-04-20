@@ -9,16 +9,23 @@ import { activePreview } from '.'
     <Button
       variant="outline"
       size="icon"
+      class="relative"
       @click="activePreview = !activePreview"
     >
-      <transition>
-        <Icon
-          v-if="activePreview"
-          icon="radix-icons:eye-open"
-          class="absolute h-4 w-4"
-        />
-        <Icon v-else icon="radix-icons:eye-closed" class="absolute h-4 w-4" />
-      </transition>
+      <Icon
+        icon="radix-icons:eye-open"
+        :class="[
+          'absolute h-4 w-4 transition-all duration-300 ease-in-out',
+          activePreview ? 'opacity-100 scale-100' : 'opacity-0 scale-0'
+        ]"
+      />
+      <Icon
+        icon="radix-icons:eye-closed"
+        :class="[
+          'absolute h-4 w-4 transition-all duration-300 ease-in-out',
+          !activePreview ? 'opacity-100 scale-100' : 'opacity-0 scale-0'
+        ]"
+      />
     </Button>
   </Tippy>
 </template>
