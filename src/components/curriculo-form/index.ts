@@ -33,13 +33,27 @@ export const curriculoSchema = z.object({
   experience: z
     .array(experienceSchema)
     .min(1, 'Adicione ao menos uma experiência profissional')
+  // TODO: add education and skills
 })
 
 export type TCurriculo = z.infer<typeof curriculoSchema>
 export type TExperience = z.infer<typeof experienceSchema>
 
 export const DEFAULT_CURRICULO: Partial<TCurriculo> = {
-  experience: [{} as TExperience]
+  name: 'Teste',
+  email: 'teste@gmail.com',
+  phone: '123456789',
+  address: 'Rua Teste, 123',
+  summary: 'Resumo do currículo',
+  experience: [
+    {
+      companyName: 'Empresa Teste',
+      startDate: '2020-01',
+      endDate: '2021-01',
+      position: 'Desenvolvedor',
+      description: 'Descrição da experiência profissional'
+    } as TExperience
+  ]
 }
 
 export { default as CurriculoForm } from './CurriculoForm.vue'
