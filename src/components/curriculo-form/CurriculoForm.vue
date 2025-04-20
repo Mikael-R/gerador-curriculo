@@ -164,13 +164,13 @@ defineExpose({ curriculo })
 
         <FormField
           v-slot="{ componentField }"
-          :name="`experience.${index}.companyName`"
+          :name="`experience.${index}.position`"
         >
           <FormItem>
-            <FormLabel>Nome da empresa</FormLabel>
+            <FormLabel>Cargo</FormLabel>
             <FormControl>
               <Input
-                placeholder="Empresa Exemplo LTDA"
+                placeholder="Desenvolvedor Frontend"
                 v-bind="componentField"
               />
             </FormControl>
@@ -180,13 +180,13 @@ defineExpose({ curriculo })
 
         <FormField
           v-slot="{ componentField }"
-          :name="`experience.${index}.position`"
+          :name="`experience.${index}.companyName`"
         >
           <FormItem>
-            <FormLabel>Cargo</FormLabel>
+            <FormLabel>Nome da empresa</FormLabel>
             <FormControl>
               <Input
-                placeholder="Desenvolvedor Frontend"
+                placeholder="Empresa Exemplo LTDA"
                 v-bind="componentField"
               />
             </FormControl>
