@@ -19,7 +19,11 @@ import { Icon } from '@iconify/vue'
 
 const { toast } = useToast()
 
-const { handleSubmit, resetForm } = useForm({
+const {
+  handleSubmit,
+  resetForm,
+  values: curriculo
+} = useForm({
   validationSchema: toTypedSchema(curriculoSchema),
   initialValues: DEFAULT_CURRICULO
 })
@@ -56,6 +60,8 @@ const onSubmit = handleSubmit((values) => {
     loading.value = false
   }
 })
+
+defineExpose({ curriculo })
 </script>
 
 <template>
