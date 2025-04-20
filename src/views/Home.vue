@@ -11,9 +11,9 @@
     <div class="flex flex-row justify-evenly gap-8 px-3">
       <CurriculoForm ref="curriculoForm" class="w-full max-w-md" />
       <CurriculoTemplate
-        v-if="activePreview"
+        v-if="activePreview && curriculoForm"
         class="w-full max-w-xl"
-        :curriculo="curriculoForm?.curriculo"
+        :curriculo="curriculoForm.curriculo"
       />
     </div>
   </main>
@@ -25,6 +25,7 @@ import { TogglePreview, activePreview } from '@/components/toggle-preview'
 import { ToggleTheme } from '@/components/toggle-theme'
 import { CurriculoForm } from '@/components/curriculo-form'
 import { CurriculoTemplate } from '@/components/curriculo-template'
+import type { TCurriculo } from '@/components/curriculo-form'
 
-const curriculoForm = ref()
+const curriculoForm = ref<{ curriculo: TCurriculo }>()
 </script>
