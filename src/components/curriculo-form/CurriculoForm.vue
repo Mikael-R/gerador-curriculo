@@ -115,9 +115,11 @@ const onSubmit = handleSubmit((values) => {
             Experiência Profissional {{ index + 1 }}
           </h3>
 
-          <Button v-if="index > 0" variant="destructive" size="icon" @click="removeExperience(index)" class="rounded-full absolute right-0 -top-1" type="button">
-            <Icon icon="radix-icons:trash" class="w-3 h-3" />
-          </Button>
+          <Tippy content="Apagar experiência" class="absolute right-0 -top-1">
+            <Button v-if="index > 0" variant="destructive" size="icon" @click="removeExperience(index)" class="rounded-full" type="button">
+              <Icon icon="radix-icons:trash" />
+            </Button>
+          </Tippy>
         </div>
 
         <FormField :name="`experience.${index}.companyName`" v-slot="{ componentField }">
