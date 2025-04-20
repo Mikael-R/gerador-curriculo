@@ -1,8 +1,6 @@
 <template>
   <header class="absolute top-4 right-4 flex flex-row gap-2">
-    <Button variant="outline" size="icon" @click="downloadPDF">
-      <Icon icon="radix-icons:download" class="h-4 w-4" />
-    </Button>
+    <ButtonDownload @click="downloadPDF" />
     <TogglePreview />
     <ToggleTheme />
   </header>
@@ -11,7 +9,7 @@
     <h1 class="text-center text-3xl font-semibold mt-3 mb-6">
       Gerador de currículo
     </h1>
-    <div class="flex flex-row justify-center gap-8 px-3">
+    <div class="flex flex-row justify-center gap-8 p-3">
       <CurriculoForm
         ref="curriculoForm"
         class="w-full max-w-md"
@@ -30,15 +28,16 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import html2pdf from 'html2pdf.js'
+import { useToast } from '@/components/ui/toast/use-toast'
+import { ButtonDownload } from '@/components/button-download'
 import { TogglePreview, activePreview } from '@/components/toggle-preview'
 import { ToggleTheme } from '@/components/toggle-theme'
 import { CurriculoForm } from '@/components/curriculo-form'
 import { CurriculoTemplate } from '@/components/curriculo-template'
-import { Button } from '@/components/ui/button'
-import { Icon } from '@iconify/vue'
-import type { TCurriculo } from '@/components/curriculo-form'
 
-const curriculoForm = ref<{ curriculo: TCurriculo }>()
+const { toast } = useToast()
+
+const curriculoForm = ref()
 const curriculoTemplate = ref()
 
 const options = {
@@ -55,8 +54,26 @@ const options = {
   }
 }
 
-const downloadPDF = () => {
+const downloadPDF = async () => {
+  if (curriculoForm.value?.validate) {
+    const { valid } = await curriculoForm.value.validate()
+    if (!valid) {
+      toast({
+        title: 'Verifique os campos',
+        description: 'Preencha corretamente todos os campos.',
+        variant: 'destructive'
+      })
+      return
+    }
+  }
+
   const el = curriculoTemplate.value.$el
+
   html2pdf().from(el).set(options).save('curriculo.pdf')
+
+  toast({
+    title: 'Currículo gerado com sucesso!',
+    description: 'Seu currículo foi gerado e baixado em PDF.'
+  })
 }
 </script>

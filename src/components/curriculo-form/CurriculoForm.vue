@@ -1,8 +1,6 @@
 <script setup lang="ts">
-import { ref } from 'vue'
 import { useForm, useFieldArray } from 'vee-validate'
 import { toTypedSchema } from '@vee-validate/zod'
-import { useToast } from '@/components/ui/toast/use-toast'
 import { curriculoSchema, DEFAULT_CURRICULO } from '.'
 
 import { Button } from '@/components/ui/button'
@@ -19,11 +17,9 @@ import { Icon } from '@iconify/vue'
 
 const emit = defineEmits(['submit'])
 
-const { toast } = useToast()
-
 const {
+  validate,
   handleSubmit,
-  resetForm,
   values: curriculo
 } = useForm({
   validationSchema: toTypedSchema(curriculoSchema),
@@ -36,34 +32,11 @@ const {
   push: addExperience
 } = useFieldArray('experience')
 
-const loading = ref(false)
-
 const onSubmit = handleSubmit((values) => {
-  try {
-    loading.value = true
-
-    emit('submit', values)
-
-    resetForm({ values: DEFAULT_CURRICULO })
-
-    toast({
-      title: 'Currículo gerado com sucesso!',
-      description: 'Seu currículo foi gerado e baixado em PDF.'
-    })
-  } catch (e) {
-    console.error(e)
-    toast({
-      title: 'Erro ao gerar currículo',
-      description:
-        'Ocorreu um erro ao gerar seu currículo. Tente novamente mais tarde.',
-      variant: 'destructive'
-    })
-  } finally {
-    loading.value = false
-  }
+  emit('submit', values)
 })
 
-defineExpose({ curriculo })
+defineExpose({ curriculo, validate })
 </script>
 
 <template>
@@ -242,7 +215,7 @@ defineExpose({ curriculo })
       </Button>
     </div>
 
-    <Button type="submit" class="mt-3 h-12 text-base" :loading="loading">
+    <Button type="submit" class="mt-3 h-12 text-base">
       <Icon icon="radix-icons:download" class="w-3 h-3" />
       Baixar currículo
     </Button>

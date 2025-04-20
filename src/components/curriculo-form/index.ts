@@ -33,14 +33,13 @@ export const curriculoSchema = z.object({
   experience: z
     .array(experienceSchema)
     .min(1, 'Adicione ao menos uma experiência profissional')
-  // TODO: add education and skills
 })
 
 export type TCurriculo = z.infer<typeof curriculoSchema>
 export type TExperience = z.infer<typeof experienceSchema>
 
 export const DEFAULT_CURRICULO: Partial<TCurriculo> = {
-  name: 'Teste',
+  name: '',
   email: 'teste@gmail.com',
   phone: '123456789',
   address: 'Rua Teste, 123',
