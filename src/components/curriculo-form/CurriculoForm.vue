@@ -177,7 +177,8 @@ const onSubmit = handleSubmit((values) => {
     </div>
 
     <Button type="submit" class="mt-3 h-12 text-base" :loading="loading">
-      Enviar
+      <Icon icon="radix-icons:download" class="w-3 h-3" />
+      Baixar currículo
     </Button>
   </form>
 </template>
