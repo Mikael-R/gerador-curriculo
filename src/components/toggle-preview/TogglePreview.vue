@@ -16,14 +16,14 @@ import { activePreview } from '.'
         icon="radix-icons:eye-open"
         :class="[
           'absolute h-4 w-4 transition-all duration-300 ease-in-out',
-          activePreview ? 'opacity-100 scale-100' : 'opacity-0 scale-0'
+          !activePreview ? 'opacity-100 scale-100' : 'opacity-0 scale-0'
         ]"
       />
       <Icon
         icon="radix-icons:eye-closed"
         :class="[
           'absolute h-4 w-4 transition-all duration-300 ease-in-out',
-          !activePreview ? 'opacity-100 scale-100' : 'opacity-0 scale-0'
+          activePreview ? 'opacity-100 scale-100' : 'opacity-0 scale-0'
         ]"
       />
     </Button>
