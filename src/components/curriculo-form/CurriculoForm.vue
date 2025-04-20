@@ -17,6 +17,8 @@ import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Icon } from '@iconify/vue'
 
+const emit = defineEmits(['submit'])
+
 const { toast } = useToast()
 
 const {
@@ -40,7 +42,7 @@ const onSubmit = handleSubmit((values) => {
   try {
     loading.value = true
 
-    console.log(values)
+    emit('submit', values)
 
     resetForm({ values: DEFAULT_CURRICULO })
 
