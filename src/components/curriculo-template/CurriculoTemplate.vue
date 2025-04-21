@@ -18,7 +18,10 @@
         <h3 class="font-medium text-lg">{{ experience.position }}</h3>
         <p>
           {{ experience.companyName }}
-          <span class="text-sm">
+          <span
+            v-if="experience.startDate && experience.endDate"
+            class="text-sm"
+          >
             ({{ experience.startDate }} até {{ experience.endDate }})
           </span>
         </p>
