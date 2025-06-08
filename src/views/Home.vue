@@ -13,7 +13,7 @@
     <div class="flex flex-col lg:flex-row justify-center gap-8 p-3 lg:pl-8">
       <CurriculoForm
         ref="curriculoForm"
-        class="w-full max-w-md"
+        class="w-full max-w-md m-auto"
         @submit="downloadPDF"
       />
       <CurriculoTemplate
