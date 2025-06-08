@@ -41,6 +41,27 @@ defineExpose({ curriculo, validate })
 
 <template>
   <form class="flex flex-col gap-3" @submit="onSubmit">
+    <FormField v-slot="{ componentField }" name="linkedin">
+      <FormItem>
+        <FormLabel>Perfil LinkedIn</FormLabel>
+        <div class="flex gap-2">
+          <FormControl>
+            <Input
+              type="url"
+              placeholder="https://linkedin.com/in/seu-perfil"
+              v-bind="componentField"
+            />
+          </FormControl>
+          <Tippy content="Buscar perfil">
+            <Button type="button" variant="outline" aria-label="Buscar perfil">
+              <Icon icon="radix-icons:magnifying-glass" />
+            </Button>
+          </Tippy>
+        </div>
+        <FormMessage />
+      </FormItem>
+    </FormField>
+
     <FormField v-slot="{ componentField }" name="name">
       <FormItem>
         <FormLabel>Nome completo</FormLabel>

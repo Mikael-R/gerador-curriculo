@@ -16,6 +16,7 @@ export const experienceSchema = z.object({
 })
 
 export const curriculoSchema = z.object({
+  linkedin: z.string(),
   name: z.string().min(2, 'Nome muito curto').max(50, 'Nome muito longo'),
   email: z.string().email('Email inválido'),
   phone: z
