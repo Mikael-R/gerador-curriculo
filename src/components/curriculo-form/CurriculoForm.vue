@@ -47,7 +47,7 @@ defineExpose({ curriculo, validate })
         <div class="flex gap-2">
           <FormControl>
             <Input
-              type="url"
+              type="text"
               placeholder="https://linkedin.com/in/seu-perfil"
               v-bind="componentField"
             />
