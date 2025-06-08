@@ -3,6 +3,7 @@ import { useForm, useFieldArray } from 'vee-validate'
 import { toTypedSchema } from '@vee-validate/zod'
 import { curriculoSchema, DEFAULT_CURRICULO } from '.'
 
+import { ButtonSearchLinkedin } from '@/components/button-search-linkedin'
 import { Button } from '@/components/ui/button'
 import {
   FormControl,
@@ -20,7 +21,8 @@ const emit = defineEmits(['submit'])
 const {
   validate,
   handleSubmit,
-  values: curriculo
+  values: curriculo,
+  setValues
 } = useForm({
   validationSchema: toTypedSchema(curriculoSchema),
   initialValues: DEFAULT_CURRICULO
@@ -35,6 +37,11 @@ const {
 const onSubmit = handleSubmit((values) => {
   emit('submit', values)
 })
+
+const setProfile = (profile: any) => {
+  console.log(profile)
+  setValues(profile)
+}
 
 defineExpose({ curriculo, validate })
 </script>
@@ -52,11 +59,11 @@ defineExpose({ curriculo, validate })
               v-bind="componentField"
             />
           </FormControl>
-          <Tippy content="Buscar perfil">
-            <Button type="button" variant="outline" aria-label="Buscar perfil">
-              <Icon icon="radix-icons:magnifying-glass" />
-            </Button>
-          </Tippy>
+          <ButtonSearchLinkedin
+            mock
+            :profile-url="componentField.modelValue"
+            @profile-found="setProfile"
+          />
         </div>
         <FormMessage />
       </FormItem>
