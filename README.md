@@ -1,5 +1,18 @@
 # gerador-curriculo
 
+## TODO
+
+[x] Usar API do LinkedIn para preencher automaticamente
+[ ] Adicionar mais informações
+[ ] Gerar o currículo em outro idioma e traduzir automaticamente
+[ ] Backlog
+[ ] Botão de otimizar texto que melhora o texto com IA
+[ ] Enviar currículo por e-mail
+[ ] Implementar mais um template de currículo
+[ ] Salvar cadastro do usuário
+[ ] Salvar currículo no cadastro do usuário e manter no histórico
+[ ] Layouts personalizados (usuário enviaria seu próprio layout)
+
 This template should help get you started developing with Vue 3 in Vite.
 
 ## Recommended IDE Setup
