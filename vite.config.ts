@@ -12,7 +12,8 @@ export default defineConfig({
   },
   build: {
     target: 'esnext',
-    minify: 'esbuild'
+    minify: 'esbuild',
+    chunkSizeWarningLimit: 1000 // 1MB
   },
   server: {
     allowedHosts: true
